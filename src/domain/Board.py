@@ -67,6 +67,18 @@ class Board:
 
         self._data[self._rows - self.get_current_col_size(col_)][col_] = char_
 
+        return self.get_current_col_size(col_)
+    
+    def fake_push_to_col(self, col_):
+
+        if col_ < 1 or col_ > self._cols:
+            raise InvalidColumnException('Entered column is out of bounds!')
+
+        if self.get_current_col_size(col_) == self._rows:
+            raise ColumnOverflowException('This column is full!')
+        
+        return self.get_current_col_size(col_)
+
     def __str__(self):
         """
         str() operator overriding method.

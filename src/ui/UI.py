@@ -60,7 +60,7 @@ class UI:
                         col_push = ' '
             
                 try:
-                    self._service.player_push_to_col(col_push)
+                    self._service.push_to_col(col_push)
                     valid_input = True
                 except ColumnOverflowException as coe:
                     print(str(coe))

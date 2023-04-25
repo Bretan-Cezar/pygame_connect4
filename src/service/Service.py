@@ -5,9 +5,13 @@ from service.ServiceExceptions import *
 class Service:
 
     def __init__(self, rows_, cols_):
-        
+        self._rows = rows_
+        self._cols = cols_
         self._board = Board(rows_, cols_)
 
+    def clear_board(self):
+        self._board = Board(self._rows, self._cols)
+        
     def player_push_to_col(self, col_):
         """
         Service method that calls the Board object's push to column method, and as
@@ -17,9 +21,18 @@ class Service:
         @param: col_ - The column where it is needed to push the symbol.
         @return: -
         """
-        self._board.push_to_col(col_, '\u26A1')
+        return self._board.push_to_col(col_, '\u26A1')
     
-    def computer_push_to_col(self):
+    def computer_push_to_col(self, col_):
+
+        return self._board.push_to_col(col_, '\u26D4')
+    
+    def fake_push_to_col(self, col_):
+
+        return self._board.fake_push_to_col(col_)
+    
+    
+    def computer_determine_push_to_col(self):
         """
         Service method that calls the Board object's push to column method, and as
         an effect it "drops a computer's coin" in a column determined by an algorithm that
@@ -126,8 +139,8 @@ class Service:
         competitive play. A "computer's coin" being "dropped" on the randomly selected column number.
         '''
         col = random.choice(possible_moves)
-        self._board.push_to_col(col, '\u26D4')
 
+        return col
 
     def check_draw(self):
         """
